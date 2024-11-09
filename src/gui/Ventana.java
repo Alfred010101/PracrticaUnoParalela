@@ -1,6 +1,7 @@
 
 package gui;
 
+import hilos.Producto;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -42,7 +43,10 @@ public class Ventana extends JFrame implements Runnable
     @Override
     public void run()
     {
-        
+        Producto p = new Producto();
+        Thread hilo = new Thread(p);
+        panelPrincipal.add(p, Integer.valueOf(1));
+        hilo.start();
     }
     
 }
