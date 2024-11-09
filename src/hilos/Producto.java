@@ -3,6 +3,8 @@ package hilos;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -23,7 +25,7 @@ public class Producto extends JLabel implements Runnable
                 new Point(45, 90),
                 new Point(60, 100),
                 new Point(75, 90)));
-        imagen = new ImageIcon("src/gui/src/producto.jpg");
+        imagen = new ImageIcon("src/gui/src/producto.png");
         setIcon(imagen);
     }
 
@@ -32,8 +34,14 @@ public class Producto extends JLabel implements Runnable
     {
         for(Point actual : coordenadas)
         {
-            setBounds(actual.x, actual.y,  imagen.getIconWidth(), imagen.getIconHeight());
+            try
+            {
+                setBounds(actual.x, actual.y,  imagen.getIconWidth(), imagen.getIconHeight());
+                Thread.sleep(600);
+            } catch (InterruptedException ex)
+            {
+                Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+            }            
         }
     }
-
 }
